@@ -1,0 +1,27 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Install cinder in Ubuntu
+    apt:
+      name:
+        - cinder-api
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install Horizon in Ubuntu
+    apt:
+      name:
+        -openstack-dashboard
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install neutron-server
+    apt:
+      name:
+        - neutron-server
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
